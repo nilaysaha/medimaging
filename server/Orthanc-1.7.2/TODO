@@ -1,0 +1,210 @@
+=======================
+=== Orthanc Roadmap ===
+=======================
+
+
+=======
+General
+=======
+
+* Configure an user-defined site UID root if generating DICOM UIDs
+  ("FromDcmtkBridge::GenerateUuid()")
+* Support "/preview" and "/matlab" for LUT color images
+* Improve handling of errors in the command queue:
+  https://groups.google.com/d/msg/orthanc-users/--njEbqcDDI/rBu8XL-Mm-cJ
+* Support partial file retrieval in Orthanc::HttpClient
+* Support retry counter in Orthanc::HttpClient
+* Option to enable DNS lookups in DICOM: https://goo.gl/woa35Z
+
+
+=============
+Documentation
+=============
+
+* Expand documentation of REST API with Swagger/OpenAPI:
+  https://hg.orthanc-server.com/orthanc-book/file/default/OpenAPI
+
+
+========
+REST API
+========
+
+--------
+Mid-term
+--------
+
+* Create multi-frame images with /tools/create-dicom (by adding a
+  "MultiFrame" flag to avoid creating a series)
+* In the /studies/{id}/anonymize route, add an option to remove secondary captures.
+  They usually contains Patient info in the image.  The SOPClassUID might be used to
+  identify such secondary captures.
+
+---------
+Long-term
+---------
+
+* Stick to the JSONapi or JAREST guidelines for a "v2" of the API:
+  https://groups.google.com/forum/#!msg/orthanc-users/Bag-SwEE9ZI/-w7QXI6p7-oJ
+  http://www.admiraalit.nl/jarest/
+
+
+=====
+DICOM
+=====
+
+--------
+Mid-term
+--------
+
+* Support "Retrieve AE Title" (0008,0054) in C-FIND:
+  - On SCP side:
+    http://dicom.nema.org/medical/DICOM/2019a/output/chtml/part04/sect_C.4.html#sect_C.4.1.1.3.2
+    => As Orthanc is non-distributed, it should simply reply using the AET provided by the caller
+  - On SCU side:
+    https://groups.google.com/d/msg/orthanc-users/wPl0g5mqZco/5X1Z8tEzBgAJ
+* Support "Instance Availability" (0008,0056) in C-FIND:
+  http://dicom.nema.org/medical/DICOM/2019a/output/chtml/part04/sect_C.4.html#sect_C.4.1.1.3.2
+  https://groups.google.com/d/msg/orthanc-users/hteDgE6igo8/j-ArqD7pBQAJ
+* Check Big Endian transfer syntax in ParsedDicomFile::EmbedImage and
+  DicomImageDecoder
+* Strict hierarchical C-FIND:
+  https://groups.google.com/d/msg/orthanc-users/VBHpeGVSNKM/tkaVvjWFBwAJ
+
+---------
+Long-term
+---------
+
+* Support DICOM TLS (cf. "--enable-tls" in storescp)
+* Support extended association:
+  https://groups.google.com/d/msg/orthanc-users/xD4d3mpc6ms/srF7E2goAAAJ
+* Support C-MOVE-CANCEL:
+  https://groups.google.com/d/msg/orthanc-users/KnduYBFd06A/o86cl5SeCAAJ
+
+--------------------
+Internationalization
+--------------------
+
+* Support multiple specific character sets (cf. "SCSH32" in orthanc-tests)
+  - http://dicom.nema.org/medical/dicom/current/output/chtml/part03/sect_C.12.html#sect_C.12.1.1.2
+  - Japanese test: http://dicom.nema.org/MEDICAL/dicom/2017c/output/chtml/part05/sect_H.3.2.html
+* Support Supplementary Kanji set (ISO 2022 IR 159)
+* Create DICOM files with multibyte encodings (Korean, JapaneseKanji, SimplifiedChinese)
+
+
+=======
+Plugins
+=======
+
+---
+SDK
+---
+
+* Add plugins for normalized operations (notably so as to support
+  Print SCU/SCP):
+  https://web.archive.org/web/20170923150432/https://www.medicalconnections.co.uk/kb/DICOM_Print_Service
+* Provide access to the Orthanc::DicomUserConnection class in plugins:
+  https://groups.google.com/d/msg/orthanc-users/ycDA1xPuTRY/nsT2_GOtEgAJ
+* Provide a C++ callback similar to "ReceivedInstanceFilter()" in Lua
+  https://book.orthanc-server.com/users/lua.html#filtering-incoming-dicom-instances
+  https://groups.google.com/d/msg/orthanc-users/BtvLTE5Ni8A/vIMhmMgfBAAJ
+
+----------------
+Ideas of plugins
+----------------
+
+* DICOM-RT primitives (RT-STRUCT, RT-PLAN, RT-DOSE)
+* Converter to/from NIfTI
+* Decode JPEG2k with grok: https://github.com/GrokImageCompression/grok
+* Generate dynamic HTTP content using Lua:
+  https://groups.google.com/d/msg/orthanc-users/KompazkxRSs/5Rh03mzgDAAJ
+* More generally, expose more callbacks of the plugin SDK in Lua:
+  https://groups.google.com/d/msg/orthanc-users/_FbiRHuXPGM/J-OAv7zaCAAJ
+* Authorization plugin for the DICOM protocol:
+  https://groups.google.com/d/msg/orthanc-users/Wv-QEwTE0IA/rvJxoOjcAQAJ
+* Configuration interface plugin
+
+
+===
+Lua
+===
+
+* Configure HTTP headers from Lua (in HttpGet(), HttpPost(),
+  HttpPut(), HttpDelete(), RestApiGet(), RestApiPost(), RestApiPut()
+  and RestApiDelete().
+  https://groups.google.com/forum/#!msg/orthanc-users/WNnW187OILM/6XX_bm96BwAJ
+
+
+===========
+Performance
+===========
+
+
+================
+Code refactoring
+================
+
+* Use Semaphore::Locker everywhere (instead of explicit
+  Release() and Acquire())
+* Avoid direct calls to FromDcmtkBridge (make most of its 
+  methods private), go through ParsedDicomFile wherever possible
+
+=================
+Platform-specific
+=================
+
+---------
+Packaging
+---------
+
+* CentOS and RHEL through EPEL:
+  http://fedoraproject.org/wiki/EPEL_Package_Maintainers
+
+------------------------
+Big-endian architectures
+------------------------
+
+* Check the generated 16bpp PNG images
+
+-----------------
+Microsoft Windows
+-----------------
+
+* Add compatibility with non-ASCII paths (Orthanc expresses its paths
+  as UTF-8 strings, but Windows expects them to be translated to the 
+  system locale)
+
+
+=====================
+External applications
+=====================
+
+* Create REST bindings with Slicer
+* Create REST bindings with Horos/OsiriX
+
+
+====
+Misc
+====
+
+-------
+Logging
+-------
+
+This is a wish expressed in issue #65 on BitBucket:
+
+"Different levels for various modules (nice to have)
+
+We often need to debug DICOM interactions and logs are 'polluted' by
+logs from the Rest API, i.e: since I have a process calling the
+/changes route every 5 second, I'm lost in 17000 /changes record in my
+logs everyday while I just want to check what kind of C-Find requests
+are issued by a modality. If we go for it, logs could be configured
+via the configuration file: i.e.:
+
+{
+  "Web": "info",
+  "Dicom": "debug",
+  "Db": "warning",
+  "WebViewer": "warning", // here WebViewer is a plugin
+  "Generic": "warning", // for all stuffs we could not port to the new logging API or old plugins ....
+}"

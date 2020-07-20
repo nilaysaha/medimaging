@@ -1,0 +1,512 @@
+{
+	"0008,0005" : 
+	{
+		"Name" : "SpecificCharacterSet",
+		"Type" : "String",
+		"Value" : "ISO_IR 100"
+	},
+	"0008,0008" : 
+	{
+		"Name" : "ImageType",
+		"Type" : "String",
+		"Value" : "DERIVED\\PRIMARY\\BIPLANE A"
+	},
+	"0008,0016" : 
+	{
+		"Name" : "SOPClassUID",
+		"Type" : "String",
+		"Value" : "1.2.840.10008.5.1.4.1.1.12.1"
+	},
+	"0008,0018" : 
+	{
+		"Name" : "SOPInstanceUID",
+		"Type" : "String",
+		"Value" : "1.3.12.2.1107.5.4.3.284980.19951129.170916.9"
+	},
+	"0008,0020" : 
+	{
+		"Name" : "StudyDate",
+		"Type" : "String",
+		"Value" : "19930325"
+	},
+	"0008,0030" : 
+	{
+		"Name" : "StudyTime",
+		"Type" : "String",
+		"Value" : "135731"
+	},
+	"0008,0050" : 
+	{
+		"Name" : "AccessionNumber",
+		"Type" : "String",
+		"Value" : ""
+	},
+	"0008,0060" : 
+	{
+		"Name" : "Modality",
+		"Type" : "String",
+		"Value" : "XA"
+	},
+	"0008,0070" : 
+	{
+		"Name" : "Manufacturer",
+		"Type" : "String",
+		"Value" : ""
+	},
+	"0008,0080" : 
+	{
+		"Name" : "InstitutionName",
+		"Type" : "String",
+		"Value" : "INSTITUTION                 ."
+	},
+	"0008,0081" : 
+	{
+		"Name" : "InstitutionAddress",
+		"Type" : "String",
+		"Value" : ""
+	},
+	"0008,0090" : 
+	{
+		"Name" : "ReferringPhysicianName",
+		"Type" : "String",
+		"Value" : ""
+	},
+	"0008,1030" : 
+	{
+		"Name" : "StudyDescription",
+		"Type" : "String",
+		"Value" : "8 images of 4 biplane acqs"
+	},
+	"0008,1050" : 
+	{
+		"Name" : "PerformingPhysicianName",
+		"Type" : "String",
+		"Value" : "Well^U^R^Dr."
+	},
+	"0008,1140" : 
+	{
+		"Name" : "ReferencedImageSequence",
+		"Type" : "Sequence",
+		"Value" : 
+		[
+			{
+				"0008,1150" : 
+				{
+					"Name" : "ReferencedSOPClassUID",
+					"Type" : "String",
+					"Value" : "1.2.840.10008.5.1.4.1.1.12.1"
+				},
+				"0008,1155" : 
+				{
+					"Name" : "ReferencedSOPInstanceUID",
+					"Type" : "String",
+					"Value" : "1.3.12.2.1107.5.4.3.284980.19951129.170916.11"
+				}
+			}
+		]
+	},
+	"0008,2110" : 
+	{
+		"Name" : "RETIRED_LossyImageCompressionRetired",
+		"Type" : "String",
+		"Value" : "01"
+	},
+	"0008,2112" : 
+	{
+		"Name" : "SourceImageSequence",
+		"Type" : "Sequence",
+		"Value" : 
+		[
+			{
+				"0008,1150" : 
+				{
+					"Name" : "ReferencedSOPClassUID",
+					"Type" : "String",
+					"Value" : "1.2.840.10008.5.1.4.1.1.12.1"
+				},
+				"0008,1155" : 
+				{
+					"Name" : "ReferencedSOPInstanceUID",
+					"Type" : "String",
+					"Value" : "1.3.12.2.1107.5.4.3.284980.19951129.170916.8"
+				}
+			}
+		]
+	},
+	"0009,0010" : 
+	{
+		"Name" : "PrivateCreator",
+		"Type" : "String",
+		"Value" : "CARDIO-SMS 1.0"
+	},
+	"0009,1002" : 
+	{
+		"Name" : "Unknown Tag & Data",
+		"PrivateCreator" : "CARDIO-SMS 1.0",
+		"Type" : "Null",
+		"Value" : null
+	},
+	"0009,1003" : 
+	{
+		"Name" : "Unknown Tag & Data",
+		"PrivateCreator" : "CARDIO-SMS 1.0",
+		"Type" : "Null",
+		"Value" : null
+	},
+	"0009,1005" : 
+	{
+		"Name" : "Unknown Tag & Data",
+		"PrivateCreator" : "CARDIO-SMS 1.0",
+		"Type" : "Null",
+		"Value" : null
+	},
+	"0010,0010" : 
+	{
+		"Name" : "PatientName",
+		"Type" : "String",
+		"Value" : "Rubo DEMO"
+	},
+	"0010,0020" : 
+	{
+		"Name" : "PatientID",
+		"Type" : "String",
+		"Value" : "322-292-73-6"
+	},
+	"0010,0030" : 
+	{
+		"Name" : "PatientBirthDate",
+		"Type" : "String",
+		"Value" : "19580719"
+	},
+	"0010,0040" : 
+	{
+		"Name" : "PatientSex",
+		"Type" : "String",
+		"Value" : "F"
+	},
+	"0018,0060" : 
+	{
+		"Name" : "KVP",
+		"Type" : "String",
+		"Value" : ""
+	},
+	"0018,1063" : 
+	{
+		"Name" : "FrameTime",
+		"Type" : "String",
+		"Value" : "66"
+	},
+	"0018,1152" : 
+	{
+		"Name" : "Exposure",
+		"Type" : "String",
+		"Value" : ""
+	},
+	"0018,1155" : 
+	{
+		"Name" : "RadiationSetting",
+		"Type" : "String",
+		"Value" : "GR"
+	},
+	"0018,1500" : 
+	{
+		"Name" : "PositionerMotion",
+		"Type" : "String",
+		"Value" : ""
+	},
+	"0018,1510" : 
+	{
+		"Name" : "PositionerPrimaryAngle",
+		"Type" : "String",
+		"Value" : "29.8"
+	},
+	"0018,1511" : 
+	{
+		"Name" : "PositionerSecondaryAngle",
+		"Type" : "String",
+		"Value" : "28.5"
+	},
+	"0019,0010" : 
+	{
+		"Name" : "PrivateCreator",
+		"Type" : "String",
+		"Value" : "CARDIO-D.R. 1.0"
+	},
+	"0019,1030" : 
+	{
+		"Name" : "MaximumImageFrameSize",
+		"PrivateCreator" : "CARDIO-D.R. 1.0",
+		"Type" : "String",
+		"Value" : "262144"
+	},
+	"0020,000d" : 
+	{
+		"Name" : "StudyInstanceUID",
+		"Type" : "String",
+		"Value" : "1.3.12.2.1107.5.4.3.4975316777216.19951114.94101.16"
+	},
+	"0020,000e" : 
+	{
+		"Name" : "SeriesInstanceUID",
+		"Type" : "String",
+		"Value" : "1.3.12.2.1107.5.4.3.4975316777216.19951114.94101.17"
+	},
+	"0020,0010" : 
+	{
+		"Name" : "StudyID",
+		"Type" : "String",
+		"Value" : ""
+	},
+	"0020,0011" : 
+	{
+		"Name" : "SeriesNumber",
+		"Type" : "String",
+		"Value" : "1"
+	},
+	"0020,0013" : 
+	{
+		"Name" : "InstanceNumber",
+		"Type" : "String",
+		"Value" : ""
+	},
+	"0020,0020" : 
+	{
+		"Name" : "PatientOrientation",
+		"Type" : "String",
+		"Value" : ""
+	},
+	"0021,0010" : 
+	{
+		"Name" : "PrivateCreator",
+		"Type" : "String",
+		"Value" : "CARDIO-D.R. 1.0"
+	},
+	"0021,1013" : 
+	{
+		"Name" : "ImageSequenceNumber",
+		"PrivateCreator" : "CARDIO-D.R. 1.0",
+		"Type" : "String",
+		"Value" : "5"
+	},
+	"0028,0002" : 
+	{
+		"Name" : "SamplesPerPixel",
+		"Type" : "String",
+		"Value" : "1"
+	},
+	"0028,0004" : 
+	{
+		"Name" : "PhotometricInterpretation",
+		"Type" : "String",
+		"Value" : "MONOCHROME2"
+	},
+	"0028,0008" : 
+	{
+		"Name" : "NumberOfFrames",
+		"Type" : "String",
+		"Value" : "17"
+	},
+	"0028,0009" : 
+	{
+		"Name" : "FrameIncrementPointer",
+		"Type" : "String",
+		"Value" : "0018,1063"
+	},
+	"0028,0010" : 
+	{
+		"Name" : "Rows",
+		"Type" : "String",
+		"Value" : "512"
+	},
+	"0028,0011" : 
+	{
+		"Name" : "Columns",
+		"Type" : "String",
+		"Value" : "512"
+	},
+	"0028,0100" : 
+	{
+		"Name" : "BitsAllocated",
+		"Type" : "String",
+		"Value" : "8"
+	},
+	"0028,0101" : 
+	{
+		"Name" : "BitsStored",
+		"Type" : "String",
+		"Value" : "8"
+	},
+	"0028,0102" : 
+	{
+		"Name" : "HighBit",
+		"Type" : "String",
+		"Value" : "7"
+	},
+	"0028,0103" : 
+	{
+		"Name" : "PixelRepresentation",
+		"Type" : "String",
+		"Value" : "0"
+	},
+	"0028,1040" : 
+	{
+		"Name" : "PixelIntensityRelationship",
+		"Type" : "String",
+		"Value" : "LIN"
+	},
+	"0028,1090" : 
+	{
+		"Name" : "RecommendedViewingMode",
+		"Type" : "String",
+		"Value" : "NAT"
+	},
+	"0028,6040" : 
+	{
+		"Name" : "RWavePointer",
+		"Type" : "String",
+		"Value" : "1\\12"
+	},
+	"0028,6100" : 
+	{
+		"Name" : "MaskSubtractionSequence",
+		"Type" : "Sequence",
+		"Value" : 
+		[
+			{
+				"0028,6101" : 
+				{
+					"Name" : "MaskOperation",
+					"Type" : "String",
+					"Value" : "NONE"
+				},
+				"0028,6110" : 
+				{
+					"Name" : "MaskFrameNumbers",
+					"Type" : "String",
+					"Value" : "0"
+				}
+			}
+		]
+	},
+	"0029,0010" : 
+	{
+		"Name" : "PrivateCreator",
+		"Type" : "String",
+		"Value" : "CARDIO-D.R. 1.0"
+	},
+	"0029,1000" : 
+	{
+		"Name" : "EdgeEnhancementSequence",
+		"Type" : "Sequence",
+		"Value" : 
+		[
+			{
+				"0029,0010" : 
+				{
+					"Name" : "PrivateCreator",
+					"Type" : "String",
+					"Value" : "CARDIO-D.R. 1.0"
+				},
+				"0029,1001" : 
+				{
+					"Name" : "ConvolutionKernelSize",
+					"PrivateCreator" : "CARDIO-D.R. 1.0",
+					"Type" : "String",
+					"Value" : "5\\5"
+				},
+				"0029,1002" : 
+				{
+					"Name" : "ConvolutionKernelCoefficients",
+					"PrivateCreator" : "CARDIO-D.R. 1.0",
+					"Type" : "String",
+					"Value" : "1\\1\\1\\1\\1\\1\\1\\1\\1\\1\\1\\1\\1\\1\\1\\1\\1\\1\\1\\1\\1\\1\\1\\1\\1"
+				},
+				"0029,1003" : 
+				{
+					"Name" : "EdgeEnhancementGain",
+					"PrivateCreator" : "CARDIO-D.R. 1.0",
+					"Type" : "String",
+					"Value" : "0.5"
+				}
+			}
+		]
+	},
+	"5000,0005" : 
+	{
+		"Name" : "RETIRED_CurveDimensions",
+		"Type" : "String",
+		"Value" : "2"
+	},
+	"5000,0010" : 
+	{
+		"Name" : "RETIRED_NumberOfPoints",
+		"Type" : "String",
+		"Value" : "1360"
+	},
+	"5000,0020" : 
+	{
+		"Name" : "RETIRED_TypeOfData",
+		"Type" : "String",
+		"Value" : "ECG"
+	},
+	"5000,0030" : 
+	{
+		"Name" : "RETIRED_AxisUnits",
+		"Type" : "String",
+		"Value" : "DPPS\\NONE"
+	},
+	"5000,0103" : 
+	{
+		"Name" : "RETIRED_DataValueRepresentation",
+		"Type" : "String",
+		"Value" : "0"
+	},
+	"5000,0104" : 
+	{
+		"Name" : "RETIRED_MinimumCoordinateValue",
+		"Type" : "Null",
+		"Value" : null
+	},
+	"5000,0105" : 
+	{
+		"Name" : "RETIRED_MaximumCoordinateValue",
+		"Type" : "Null",
+		"Value" : null
+	},
+	"5000,0106" : 
+	{
+		"Name" : "RETIRED_CurveRange",
+		"Type" : "Null",
+		"Value" : null
+	},
+	"5000,0110" : 
+	{
+		"Name" : "RETIRED_CurveDataDescriptor",
+		"Type" : "String",
+		"Value" : "0\\1"
+	},
+	"5000,0112" : 
+	{
+		"Name" : "RETIRED_CoordinateStartValue",
+		"Type" : "String",
+		"Value" : "0"
+	},
+	"5000,0114" : 
+	{
+		"Name" : "RETIRED_CoordinateStepValue",
+		"Type" : "String",
+		"Value" : "80"
+	},
+	"5000,3000" : 
+	{
+		"Name" : "RETIRED_CurveData",
+		"Type" : "Null",
+		"Value" : null
+	},
+	"7fe0,0010" : 
+	{
+		"Name" : "PixelData",
+		"Type" : "Null",
+		"Value" : null
+	}
+}

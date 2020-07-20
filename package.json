@@ -1,0 +1,19 @@
+{
+  "name": "deepc",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "dicom",
+    "server"
+  ],
+  "author": "nilay saha",
+  "license": "ISC",
+  "dependencies": {
+    "dicom": "^0.4.4",
+    "request": "^2.88.2"
+  }
+}
