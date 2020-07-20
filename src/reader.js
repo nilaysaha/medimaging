@@ -42,7 +42,7 @@ class Reader{
     }
 
     watermark(fname) {
-	
+	return;
     }
     
 }
