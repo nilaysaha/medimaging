@@ -7,6 +7,8 @@ var data = {
   image: { file: '../images/0003.DCM', content_type: 'application/dicom' }
 }
 
+var uploaded_image_ID="87ae9004-f692ccad-c4599afc-64b4d6ba-1dff969c"
+
 it('Test server is running', function(done) {
     request(`${BASE_URL}/system` , function(error, response, body) {
 	const resp_system = {
@@ -23,15 +25,35 @@ it('Test server is running', function(done) {
 	    "Version" : "1.7.2"
 	}
 	expect(response.statusCode).to.equal(200);
-	console.log(body)
         expect(JSON.parse(body).ApiVersion).to.deep.equal(resp_system.ApiVersion);
         done();
     });
+});
 
 
-    needle.post(`${BASE_URL}/instances`, data, { multipart: true }, function(err, resp, body) {
+it('add image ', function(done) {
+
+    needle.post(`${BASE_URL}/instances`, data, { multipart: true }, function(err, response, body) {
 	// needle will read the file and include it in the form-data as binary
-	console.log(body)
+	if (!err){
+	    console.log('uploaded image:')
+	    console.log(body)
+	    expect(response.statusCode).to.deep.equal(200)
+	    done()
+	}
+    });   
+
+});
+
+
+it('delete image added earlier', function(done) {
+
+    console.log(`${BASE_URL}/instances/${uploaded_image_ID}`)
+
+    needle.delete(`${BASE_URL}/instances/${uploaded_image_ID}`, null,{}, function(err, response) {
+    	console.log(response.statusCode)
+    	expect(response.statusCode).to.equal(200)
+	done()
     });
 
 });
