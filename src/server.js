@@ -3,10 +3,11 @@ const fastify = require('fastify')({ logger: true })
 const PORT = 3300
 const needle = require('needle')
 const reader = require('./reader')
+const fs = require('fs')
 
 //This program relies on a running dicom server: In this case we use orthanc server
 DICOM_SERVER="http://localhost:8042"
-DICOM_FILES_DIR="./images"
+DICOM_FILES_DIR=__dirname+"/images"
 
 
 // Declare route: test route
@@ -16,19 +17,45 @@ fastify.get('/', async (request, reply) => {
 
 
 //Fetch the image with {id} and process it.
-fastify.post('/images/:id/process', async (req, res) => {
+fastify.get('/images/:id/process', async (req, res) => {
     try {
-	const img_url=`${DICOM_SERVER}/instances/${id}/file`
+	const img_url=`${DICOM_SERVER}/instances/${req.params.id}/file`
 	var options = {
 	    compressed         : true, // sets 'Accept-Encoding' to 'gzip, deflate, br'
 	    follow_max         : 5,    // follow up to five redirects
-	    rejectUnauthorized : true  // verify SSL certificate
+	    rejectUnauthorized : false  // verify SSL certificate
 	}
+	
+	if (!fs.existsSync(DICOM_FILES_DIR)) {
+	    fs.mkdirSync(DICOM_FILES_DIR)
+	}
+
+	var image_fname = `${DICOM_FILES_DIR}/${req.params.id}.dcm`
+	console.log(`creating image file:${image_fname} from the ${img_url}`)
+
+	var wstream = fs.createWriteStream(image_fname)
         
-	var stream = needle.get(img_url, options);
-	var wstream = require('fs').createWriteStream(`${DICOM_FILES_DIR}/${id}.dcm`)
-	stream.pipe(wstream)
-	stream.pipe(reader.decoder).pipe(reader.encoder).pipe(reader.sink) //have to add a pipeline for processing image
+	needle
+	    .get(img_url, options)
+	    .pipe(wstream)
+	    .on('done', () => {
+		console.log('file reading from server has finished')
+		wstream.close()
+	    })
+	
+	//now process the file downloaded	
+	wstream.on('close', ()=> {
+	    fs.createReadStream(image_fname)
+		.pipe(reader.decoder)
+		.pipe(reader.encoder)
+		.pipe(reader.sink) 
+	    
+	    //have to add a pipeline for processing image			    
+	    reader.convert2png(image_fname, null)
+	})
+
+	
+	return { "filename": image_fname }
     }
     
     catch(err) {

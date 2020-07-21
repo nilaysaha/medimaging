@@ -4,12 +4,12 @@ var needle  = require('needle');
 var BASE_URL='http://localhost:8042'
 
 var data = {
-  image: { file: '../images/0003.DCM', content_type: 'application/dicom' }
+  image: { file: __dirname+'/../images/0003.DCM', content_type: 'application/dicom' }
 }
 
 var uploaded_image_ID="87ae9004-f692ccad-c4599afc-64b4d6ba-1dff969c"
 
-it('Test server is running', function(done) {
+it('Test server', function(done) {
     request(`${BASE_URL}/system` , function(error, response, body) {
 	const resp_system = {
 	    "ApiVersion" : 7,
@@ -46,7 +46,7 @@ it('add image ', function(done) {
 });
 
 
-it('delete image added earlier', function(done) {
+it('delete image', function(done) {
 
     console.log(`${BASE_URL}/instances/${uploaded_image_ID}`)
 
