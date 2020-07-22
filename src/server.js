@@ -1,3 +1,5 @@
+"use strict";
+
 // Require the framework and instantiate it
 const fastify = require('fastify')({ logger: true })
 const PORT = 3300
@@ -6,13 +8,28 @@ const reader = require('./reader')
 const fs = require('fs')
 
 //This program relies on a running dicom server: In this case we use orthanc server
-DICOM_SERVER="http://localhost:8042"
-DICOM_FILES_DIR=__dirname+"/images"
+const DICOM_SERVER="http://localhost:8042"
+const DICOM_FILES_DIR=__dirname+"/images"
 
 
 // Declare route: test route
 fastify.get('/', async (request, reply) => {
   return { hello: 'world' }
+})
+
+
+fastify.get('/images/list', async (request, reply) => {
+    try {
+	const req_url = `${DICOM_SERVER}/instances`
+	needle.get(req_url, function(error, response, body) {
+	    if (error) throw error;	    
+	    reply.send(body)
+	});
+    }
+    catch(err) {
+	console.error(err)
+	throw new Error(err)
+    }
 })
 
 
@@ -53,7 +70,6 @@ fastify.get('/images/:id/process', async (req, res) => {
 	    //have to add a pipeline for processing image			    
 	    reader.convert2png(image_fname, null)
 	})
-
 	
 	return { "filename": image_fname }
     }

@@ -1,0 +1,11 @@
+<div class="card">
+  <div class="card-header">
+    Image view for {{id}}
+  </div>
+  <div class="card-body">
+   {{#each images}}
+     <img src="/images/{{id}}/{{name}}" class="img-thumbnail" alt="Medical image of {{id}}"/>
+   {{/each}}
+  </div>
+</div>
+

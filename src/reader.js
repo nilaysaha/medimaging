@@ -5,7 +5,11 @@ const fs    = require("fs")
 const im = require('imagemagick')
 const path = require('path')
 
-const OUTPUT_DIR_IMAGE=__dirname+"/../processed_image"
+const OUTPUT_DIR_IMAGE=__dirname+"/viewer/public/images/"
+
+//This program relies on a running dicom server: In this case we use orthanc server
+const DICOM_SERVER="http://localhost:8042"
+const DICOM_FILES_DIR=__dirname+"/images"
 
 class Reader{
     constructor(){
@@ -86,10 +90,63 @@ class Reader{
 
 	catch (err) {
 	    console.error(err)
-	}
+	}	
+    }
 
+
+    //list all the png files created after processing
+    listImages(id) {
+	const dirName = path.join(OUTPUT_DIR_IMAGE,id);
+	return  fs.readdirSync(dirName)
+    }
+
+    //TODO: not yet idempotent. Ideally should not process if this has already been done once.
+    processImage(id) {
+	try {
+	    const img_url=`${DICOM_SERVER}/instances/${id}/file`
+	    var options = {
+		compressed         : true, // sets 'Accept-Encoding' to 'gzip, deflate, br'
+		follow_max         : 5,    // follow up to five redirects
+		rejectUnauthorized : false  // verify SSL certificate
+	    }
+	    
+	    if (!fs.existsSync(DICOM_FILES_DIR)) {
+		fs.mkdirSync(DICOM_FILES_DIR)
+	    }
+
+	    var image_fname = `${DICOM_FILES_DIR}/${id}.dcm`
+	    console.log(`creating image file:${image_fname} from the ${img_url}`)
+
+	    var wstream = fs.createWriteStream(image_fname)
+            
+	    needle
+		.get(img_url, options)
+		.pipe(wstream)
+		.on('done', () => {
+		    console.log('file reading from server has finished')
+		    wstream.close()
+		})
+	    
+	    //now process the file downloaded	
+	    wstream.on('close', ()=> {
+		fs.createReadStream(image_fname)
+		    .pipe(this.decoder)
+		    .pipe(this.encoder)
+		    .pipe(this.sink) 
+		
+		//have to add a pipeline for processing image			    
+		this.convert2png(image_fname, null)
+	    })
+	    
+	    return { "filename": image_fname }
+	}
+	
+	catch(err) {
+	    console.error(err)
+	}
 	
     }
+
     
 }
 
