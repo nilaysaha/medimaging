@@ -1,0 +1,15 @@
+<h3> Image viewer </h3>
+<table class="table">
+  <thead class="thead-dark">
+    <th> Image ID </th><th>Description</th><th>Date</th>
+  </thead>
+  <tbody>
+    {{#each image}}
+    <tr>
+      <td>{{id}}</td> 
+      <td>{{description}}</td>
+      <td>{{date}} </td>
+    </tr>
+    {{/each}}
+  </tbody>
+</table>
