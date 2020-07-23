@@ -1,9 +1,9 @@
 # medimaging
 medical imaging analysis using dicom server
 
-![Alt text](images/exam_wattx.png?raw=true "Title")
-
-
+![Alt text](images/intro_portal.png?raw=true "Index Page portal")
+![Alt text](images/imagelist_portal.png?raw=true "Image list portal")
+![Alt text](images/imageDetails_portal.png?raw=true "Image details(One image dcm = multiple png files")
 
 
 ### Sample help
