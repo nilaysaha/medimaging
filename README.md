@@ -12,12 +12,13 @@ Hence you would require nodejs version > v10.16.3. Current version used to test 
 
 ### Steps:
     - git clone https://github.com/nilaysaha/medimaging.git
-    #### Install the web viewer
+
+#### Install the web viewer
     - cd medimaging/src/viewer
     - npm install (uses package.json to install dependencies and create node_modules directory)
     - npm start (to start the web application for viewing the images)
 
-    ### Create binary for orthanc server
+#### Create binary for orthanc server
     - cd server/Orthanc-1.7.2
     - ./build_static.sh (This imports static files from remote repo and build a orthanc server in a newly created "Build" directory)
     - ./Build/Orthanc (to start the dicom complaint REST api server)
