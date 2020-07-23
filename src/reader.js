@@ -4,6 +4,8 @@ const dicom = require("dicom")
 const fs    = require("fs")
 const im = require('imagemagick')
 const path = require('path')
+const needle = require('needle')
+
 
 const OUTPUT_DIR_IMAGE=__dirname+"/viewer/public/images/"
 
@@ -54,7 +56,10 @@ class Reader{
 	    console.log(`trying to create dir:${dname}`)
 	    if (!fs.existsSync(dname)){
 		fs.mkdirSync(dname,  {recursive: true})
-	    }	    
+		return true
+	    }else {
+		return false
+	    }
 	}
 
 	catch(err) {
@@ -70,20 +75,24 @@ class Reader{
 	    const new_dir = path.join(OUTPUT_DIR_IMAGE, t.split(".")[0])
 	    const t_saved = path.join(new_dir, `sconvert.png`)
 
-	    this.ensureDir(new_dir)
+	    const created = this.ensureDir(new_dir)
 
-	    if (watermark_text == null ) {
-		im.convert([fname, `label:'${watermark_text}'`,t_saved], 
-			   (err, stdout) => {
-			       if (err) throw err;
-			       console.log('stdout:', stdout);
-			   });
+	    if (created) {
+		if (watermark_text == null ) {
+		    im.convert([fname, `label:'${watermark_text}'`,t_saved], 
+			       (err, stdout) => {
+				   if (err) throw err;
+				   console.log('stdout:', stdout);
+			       });
+		} else {
+		    im.convert([fname ,t_saved], 
+			       (err, stdout) => {
+				   if (err) throw err;
+				   console.log('stdout:', stdout);
+			       });
+		}
 	    } else {
-		im.convert([fname ,t_saved], 
-			   (err, stdout) => {
-			       if (err) throw err;
-			       console.log('stdout:', stdout);
-			   });
+		console.log(`Directory ${new_dir} exists. Hence skipping image processing`)
 	    }
 
 	}
@@ -128,12 +137,7 @@ class Reader{
 		})
 	    
 	    //now process the file downloaded	
-	    wstream.on('close', ()=> {
-		fs.createReadStream(image_fname)
-		    .pipe(this.decoder)
-		    .pipe(this.encoder)
-		    .pipe(this.sink) 
-		
+	    wstream.on('close', ()=> {		
 		//have to add a pipeline for processing image			    
 		this.convert2png(image_fname, null)
 	    })

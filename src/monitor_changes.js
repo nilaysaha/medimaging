@@ -15,7 +15,9 @@ class Monitor{
 
     process_changes(instance_arr) {
 	
+	console.log(`Now processing image ID array:${instance_arr}`)
 	instance_arr.map(x => {
+	    console.log(`Now processing image with ID:${x}`)
 	    reader.processImage(x)
 	})
 
@@ -23,13 +25,14 @@ class Monitor{
 
 
     filter_changes(){
-	const new_instances = this.changes.map(item => {
-	    if (item.ChangeType == "NewInstance"){
-		return item
-	    }
+	const new_instance = this.changes.filter(item => {
+	    return (item.ChangeType == "NewInstance")
 	})	
 	
-	this.process_changes(new_instances)
+	const id_array =  new_instance.map(x => {
+	    return x.ID
+	})
+	this.process_changes(id_array)
     }
 
     get_changes(){
