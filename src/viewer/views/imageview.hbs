@@ -1,7 +1,9 @@
 <h3> Image viewer </h3>
+<hr/>
+<p>Currently there is a 10s gap between uploading of image and processing the same.</p>
 <table class="table">
   <thead class="thead-dark">
-    <th> Image ID </th><th>Description</th><th>Date</th><th>Action</th><th>Images</th>
+    <th> Image ID </th><th>Description</th><th>Date</th><th>Images</th>
   </thead>
   <tbody>
     {{#each image}}
@@ -9,9 +11,6 @@
       <td>{{id}}</td> 
       <td>{{description}}</td>
       <td>{{date}} </td>
-      <td>
-	<button type="button" class="btn btn-primary"><a href="/listImages/process/{{id}}" target="_blank" style="target-new: tab;">Process</a></button>
-      </td>
       <td>
 	<button type="button" class="btn btn-primary"><a href="/listImages/details/{{id}}" target="_blank" style="target-new: tab;">Details</a></button>
       </td>   
