@@ -1,6 +1,9 @@
 # medimaging
 medical imaging analysis using dicom server
 
+### Overall process interaction diagram
+![Alt text](images/deepc.ai.png?raw=true "Process interaction diagram")
+
 ### Portal images
 ![Alt text](images/imagelist_portal.png?raw=true "Image list portal")
 ![Alt text](images/imageDetails_portal.png?raw=true "Image details(One image dcm = multiple png files")
