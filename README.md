@@ -4,6 +4,13 @@ medical imaging analysis using dicom server
 ### Overall process interaction diagram
 ![Alt text](images/deepc.ai.png?raw=true "Process interaction diagram")
 
+The above diagram has the following component:
+ - nginx server to expose the orthanc server to the outside world.
+ - Orthanc server which hosts the dicom protocol based REST api and the corresponding file storage on the server.
+ - process cron, which regularly executes jobs to cleanup images which are imported from the orthanc server to the web viewer.
+ - Web viewer backend REST api server that interacts with the orthanc server and does custom frontend based jobs
+ - web ui: custom viewer for the images.
+
 ### Portal images
 ![Alt text](images/imagelist_portal.png?raw=true "Image list portal")
 ![Alt text](images/imageDetails_portal.png?raw=true "Image details(One image dcm = multiple png files")
